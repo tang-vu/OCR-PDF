@@ -33,7 +33,7 @@ PDF OCR is a free web application that helps convert image-based or scanned PDF 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/minhvu2212/OCR-PDF.git
+git clone https://github.com/tang-vu/OCR-PDF.git
 cd OCR-PDF
 ```
 

@@ -60,7 +60,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Theo dõi</h3>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/minhvu2212/OCR-PDF"
+                href="https://github.com/tang-vu/OCR-PDF"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-blue-500"
@@ -78,7 +78,7 @@ export default function Footer() {
           <p className="text-sm text-gray-500 mt-2 md:mt-0">
             Được phát triển bởi{' '}
             <a href="#" className="text-blue-500 hover:underline">
-              minhvu2212
+              tang-vu
             </a>
           </p>
         </div>
