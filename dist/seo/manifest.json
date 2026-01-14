@@ -1,0 +1,27 @@
+{
+  "name": "PDF OCR - Chuyển đổi PDF dạng ảnh sang PDF có thể tìm kiếm",
+  "short_name": "PDF OCR",
+  "description": "Công cụ miễn phí chuyển đổi PDF dạng ảnh thành PDF có thể tìm kiếm và có thể chỉnh sửa với hỗ trợ nhiều ngôn ngữ bao gồm tiếng Việt",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3498db",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/maskable-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+} 

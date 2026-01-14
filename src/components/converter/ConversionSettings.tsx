@@ -42,12 +42,17 @@ export default function ConversionSettings({
               <SelectItem value="fra">Tiếng Pháp</SelectItem>
               <SelectItem value="deu">Tiếng Đức</SelectItem>
               <SelectItem value="jpn">Tiếng Nhật</SelectItem>
+              <SelectItem value="kor">Tiếng Hàn</SelectItem>
+              <SelectItem value="tha">Tiếng Thái</SelectItem>
+              <SelectItem value="ind">Tiếng Indonesia</SelectItem>
+              <SelectItem value="rus">Tiếng Nga</SelectItem>
+              <SelectItem value="spa">Tiếng Tây Ban Nha</SelectItem>
               <SelectItem value="chi_sim">Tiếng Trung (Giản thể)</SelectItem>
               <SelectItem value="chi_tra">Tiếng Trung (Phồn thể)</SelectItem>
             </SelectContent>
           </Select>
           <p className="text-sm text-gray-500 mt-1">
-            Chọn ngôn ngữ chính có trong tài liệu để cải thiện độ chính xác
+            Chọn ngôn ngữ chính có trong tài liệu để tăng độ chính xác OCR
           </p>
         </div>
 

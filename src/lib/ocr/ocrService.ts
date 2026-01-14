@@ -12,7 +12,7 @@ export class OcrService {
     this.scheduler = Tesseract.createScheduler();
   }
 
-  private async initialize(languages: string[], numWorkers = 2) {
+  private async initialize(languages: string[], numWorkers = 2, quality: 'medium' | 'high' = 'medium') {
     if (this.isInitialized) return;
 
     this.abortController = new AbortController();
@@ -26,6 +26,15 @@ export class OcrService {
       // Sử dụng as any để bỏ qua TypeScript errors
       await (worker as any).loadLanguage(languageList);
       await (worker as any).initialize(languageList);
+
+      // Cấu hình PSM và các tham số OCR tối ưu
+      // PSM 6: Assume a single uniform block of text (tốt cho PDF documents)
+      // preserve_interword_spaces: Giữ khoảng cách giữa các từ
+      await (worker as any).setParameters({
+        tessedit_pageseg_mode: quality === 'high' ? '6' : '3', // PSM 6 cho high, PSM 3 (auto) cho medium
+        preserve_interword_spaces: '1',
+        tessedit_char_blacklist: '', // Không loại bỏ ký tự nào
+      });
 
       this.workers.push(worker);
       (this.scheduler as any).addWorker(worker);
@@ -46,7 +55,7 @@ export class OcrService {
       const languages = options.language.split('+');
       const numWorkers = Math.min(pages.length, navigator.hardwareConcurrency || 2);
 
-      await this.initialize(languages, numWorkers);
+      await this.initialize(languages, numWorkers, options.quality);
 
       if (this.abortController?.signal.aborted) {
         throw new Error('OCR process was aborted');

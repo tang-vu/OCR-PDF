@@ -1,4 +1,4 @@
-import { extractPdfPages } from './pdfReader';
+import { extractPdfPages, ExtractOptions } from './pdfReader';
 import { createSearchablePdf, createTextOnlyPdf } from './pdfCreator';
 import { OcrService } from '../ocr/ocrService';
 import { OcrOptions, OcrProgress } from '../../types/ocr.types';
@@ -19,17 +19,28 @@ export class PdfOcrService {
     try {
       return new Promise<{ searchablePdf: Blob; textOnlyPdf: Blob }>(async (resolve, reject) => {
         try {
-          // Giai đoạn 1: Trích xuất các trang từ PDF
+          // Giai đoạn 1: Trích xuất các trang từ PDF với preprocessing
           onProgress({ stage: 'extracting', percent: 0 });
-          const pdfPages = await extractPdfPages(file, (current: number, total: number) => {
-            onProgress({
-              stage: 'extracting',
-              percent: (current / total) * 100,
-              page: current,
-              totalPages: total,
-              status: `Đang trích xuất trang ${current}/${total}`,
-            });
-          });
+
+          // Cấu hình extract options dựa trên quality
+          const extractOptions: ExtractOptions = {
+            quality: options.quality,
+            enablePreprocessing: true, // Bật image preprocessing để cải thiện OCR
+          };
+
+          const pdfPages = await extractPdfPages(
+            file,
+            (current: number, total: number) => {
+              onProgress({
+                stage: 'extracting',
+                percent: (current / total) * 100,
+                page: current,
+                totalPages: total,
+                status: `Đang trích xuất trang ${current}/${total}`,
+              });
+            },
+            extractOptions
+          );
           onProgress({ stage: 'extracting', percent: 100 });
 
           // Giai đoạn 2: Thực hiện OCR trên từng trang
